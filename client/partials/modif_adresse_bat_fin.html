@@ -1,0 +1,43 @@
+<div class="row">
+	<div class="col-md-12">
+		<div ng-controller="ctrlBat as ad">
+			<br>
+			<br>
+			<h2>{{bat.nom_bat}}</h2>
+			<p>Confirmer l'adresse</p>
+		</div>
+		<div ng-controller="ctrlAdrFin as app">
+			<form class="form">
+				<div class="form-group">
+					<label>Rue</label>
+					<input type="text" class="form-control" ng-model="app.adr.rue">
+				</div>
+				<div class="form-group">
+					<label>No</label>
+					<input type="text" class="form-control" ng-model="app.adr.rue_no">
+				</div>
+				<div class="form-group">
+					<label>NPA</label>
+					<input type="text" class="form-control" ng-model="app.adr.npa">
+				</div>
+				<div class="form-group">
+					<label>Localité</label>
+					<input type="text" class="form-control" ng-model="app.adr.loc">
+				</div>
+				<input type="hidden" ng-model="app.adr.no_com_fed">
+				<input type="hidden" ng-model="app.adr.ctip_loc">
+				<input type="hidden" ng-model="app.adr.lat">
+				<input type="hidden" ng-model="app.adr.lng">
+				<input type="hidden" ng-model="app.adr.estrid">
+				<input type="hidden" ng-model="app.adr.egid">
+				<input type="hidden" ng-model="app.adr.idBat">
+				<input type="hidden" ng-model="app.adr.idEtabl">
+				<button class="form-control" ng-click="app.editAdr(app.adr)">
+					<span class="glyphicon glyphicon-pencil"></span>
+				</button>
+			</form>
+		</div>
+	</div>
+</div>
+
+

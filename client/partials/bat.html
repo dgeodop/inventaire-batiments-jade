@@ -1,0 +1,60 @@
+<div class="row">
+	<div class="col-md-6">
+		<div ng-controller="ctrlBatEtabl">
+			<div ng-repeat="bat in bats">
+				<a href="#/{{idEtabl}}/{{bat.id_bat}}">
+					<p>{{bat.nom_bat}}</p>
+				</a>
+			</div>
+		</div>
+	</div>
+	<div class="col-md-6">
+		<div ng-controller="ctrlBat">
+			<h2>{{bat.nom_bat}} <a href="#/{{idEtabl}}/{{bat.id_bat}}/modif_nom_bat"><span class="glyphicon glyphicon-pencil"></span></a></h2>
+			<h3>Adresse <a href="#/{{idEtabl}}/{{bat.id_bat}}/modif_adresse_bat"><span class="glyphicon glyphicon-pencil"></span></a></h3>
+			<table class="table">
+				<tr>
+					<td class="active">RUE</td><td>{{bat.rue}}</td>
+				</tr>
+				<tr>
+					<td class="active">NO</td><td>{{bat.no_rue}}</td>
+				</tr>
+				<tr>
+					<td class="active">NPA</td><td>{{bat.npa}}</td>
+				</tr>
+				<tr>
+					<td class="active">LOCALITÉ</td><td>{{bat.localite}}</td>
+				</tr>
+			</table>
+		</div>
+		<div ng-controller="ctrlSal">
+			<h3>Salles <a href="#/{{idEtabl}}/{{idBat}}/modif_salles_bat"><span class="glyphicon glyphicon-pencil"></span></a></h3>
+			<table class="table">
+				<tr class="active">
+					<td>TYPE</td>
+					<td>QUANTITÉ</td>
+				</tr>
+				<tr ng-repeat="sal in sals">
+					<td>{{sal.typ_sal_nom}}</td>
+					<td>{{sal.qte}}</td>
+				</tr>
+			</table>
+		</div>
+		<div ng-controller="ctrlBat">
+			<h3>Année <a href="#/{{idEtabl}}/{{bat.id_bat}}/modif_annees_bat"><span class="glyphicon glyphicon-pencil"></span></a></h3>
+			<table class="table">
+				<tr>
+					<td class="active">de construction</td><td>{{bat.annee_constr}}</td>
+				</tr>
+				<tr>
+					<td class="active">de rénovation</td><td>{{bat.annee_renov}}</td>
+				</tr>
+			</table>
+		</div>
+	</div>
+</div>
+
+
+
+
+
