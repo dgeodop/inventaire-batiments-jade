@@ -16,6 +16,20 @@ exports.getAllBatOfEtabl = function (req, res) {
 	});
 }
 
+exports.getAllAncienBatOfEtabl = function (req, res) {
+	var idEtabl = req.params.idEtabl
+	var queryList = 'SELECT bat.id_bat, nom_bat FROM bat, bat_dgeo WHERE bat.id_bat=bat_dgeo.id_bat AND id_etabl=$1 AND util=0 ORDER BY id_bat_dgeo';
+	pg.connect(connectString, function(err, client, done) {
+		if(err) { return console.error('erreur de connection au serveur', err); }
+		client.query(queryList, [idEtabl], function(err, result) {
+			done();
+			if(err) { return console.error('bat.getAllAncienBatOfEtabl', err); }
+			var results = JSON.stringify(result.rows);
+			res.send(results);
+		});
+	});
+}
+
 exports.getOne = function (req, res) {
 	var idBat = req.params.idBat;
 	var queryList = 'SELECT  * FROM bat WHERE id_bat=$1';

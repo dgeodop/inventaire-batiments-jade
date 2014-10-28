@@ -22,8 +22,10 @@ app.get('/', function (req, res) {
 
 app.get('/api/etabl', ctrlEtabl.getAllEtabl);
 app.get('/api/bat/:idEtabl', ctrlBat.getAllBatOfEtabl);
+app.get('/api/ancienbat/:idEtabl', ctrlBat.getAllAncienBatOfEtabl);
 app.get('/api/bat/:idEtabl/:idBat', ctrlBat.getOne);
 
+app.post('/api/bat/:idEtabl/:idBat/add/ancien', ctrlPostBat.addAncienBat);
 app.post('/api/bat/:idEtabl/:idBat/del', ctrlPostBat.delBat);
 app.post('/api/bat/:idEtabl/:idBat/nom', ctrlPostBat.editNom);
 app.post('/api/bat/:idEtabl/:idBat/anconstr', ctrlPostBat.editAnConstr);

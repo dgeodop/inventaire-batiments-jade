@@ -6,6 +6,11 @@ var app = angular.module("app",  [
 	'routes'
 ]);
 
+app.controller("ctrlIdEtabl", function($scope,$routeParams) {
+	var idEtabl = $routeParams.idEtabl;
+	$scope.idEtabl = idEtabl;
+});
+
 app.controller("ctrlEtabl", function($scope, $http) {
 	$http.get("api/etabl")
 		.success(function(data) {
@@ -25,10 +30,27 @@ app.controller("ctrlBatEtabl", function($scope,$http,$routeParams) {
 		var idBat = bat.id_bat;
 		$http.post("api/bat/" + idEtabl + "/" + idBat + "/del")
 			.success(function(data) {
-				$scope.bats = data;
+				window.location = "#/" + idEtabl;
 			})
 	}
 	
+});
+
+app.controller("ctrlAncienBatEtabl", function($scope,$http,$routeParams) {
+	var idEtabl = $routeParams.idEtabl;
+	$scope.idEtabl = idEtabl;
+	$http.get("api/ancienbat/" + idEtabl)
+		.success(function(data) {
+			$scope.bats = data;
+		})
+	var edit = this;
+	edit.addBat = function(bat) {
+		var idBat = bat.id_bat;
+		$http.post("api/bat/" + idEtabl + "/" + idBat + "/add/ancien")
+			.success(function(data) {
+				window.location = "#/" + idEtabl;
+			})
+	}
 });
 
 app.controller("ctrlBat", function($scope, $http, $routeParams) {

@@ -16,7 +16,28 @@ exports.delBat = function(req, res) {
 				client.query(queryAddEvent, ['suppr_bat', idBat, idEtabl], function(err, result) {
 					done();
 					if(err) { return console.error('postbat.delBat.queryAddEvent', err); }
-					res.redirect('/api/bat/'+idEtabl);
+					res.send('ok').status(200);
+				});
+			});
+		});
+	});
+}
+
+exports.addAncienBat = function(req, res) {
+	var idBat = req.params.idBat;
+	var idEtabl = req.params.idEtabl;
+	var queryAddBat = 'UPDATE bat_dgeo SET util=1 WHERE id_etabl=$1 AND id_bat=$2';
+	var queryAddEvent = 'INSERT INTO event (typ_event, id_bat, id_etabl, date, vu) VALUES ($1, $2, $3, now(), 0)';
+	pg.connect(connectString, function(err, client, done) {
+		if(err) { return console.error('erreur de connection au serveur', err); }
+		client.query(queryAddBat, [idEtabl, idBat], function(err, result) {
+			done();
+			if(err) { return console.error('postbat.addAncienBat.queryAddBat', err); }
+			pg.connect(connectString, function(err, client, done) {
+				client.query(queryAddEvent, ['add_bat_ancien', idBat, idEtabl], function(err, result) {
+					done();
+					if(err) { return console.error('postbat.delBat.queryAddEvent', err); }
+					res.send('ok').status(200);
 				});
 			});
 		});
