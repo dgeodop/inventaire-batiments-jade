@@ -1,0 +1,23 @@
+<div class="row">
+	<div class="col-md-12">
+		<div ng-controller="ctrlBat as edit">
+			<br>
+			<br>
+			<h2>{{bat.nom_bat}}</h2>
+			<p>Modifier le nom du site de ce bâtiment</p>
+			<p>Site actuel: <strong>{{bat.site}}</strong></p>
+			<form class="form-inline">
+				<input class="form-control" type="text" ng-model="edit.bat.nouveauSite">
+				<button class="form-control" ng-click="edit.editSite(edit.bat)">
+					<span class="glyphicon glyphicon-pencil"></span>
+				</button>
+			</form>
+			<br>
+			<br>
+			<a href="/#/{{idEtabl}}/{{bat.id_bat}}">
+				<button class="btn">Retour à la page du bâtiment</button>
+			</a>
+		</div>
+	</div>
+</div>
+

@@ -37,6 +37,12 @@ app.controller("ctrlBat", function($scope, $http, $routeParams) {
 				$scope.bat = data[0];
 			})
 	}
+	edit.editSite = function(bat) {
+		$http.post("api/bat/" + idEtabl + "/" + idBat + "/site", bat)
+			.success(function(data) {
+				$scope.bat = data[0];
+			})
+	}
 	edit.editAnConstr = function(bat) {
 		$http.post("api/bat/" + idEtabl + "/" + idBat + "/anconstr", bat)
 			.success(function(data) {

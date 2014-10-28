@@ -13,5 +13,6 @@ routes.config(['$routeProvider',
  	.when('/:idEtabl/:idBat/modif_adresse_bat/:idLoc/:idRue/:idRueNo', {templateUrl: 'partials/modif_adresse_bat_fin.html'})
  	.when('/:idEtabl/:idBat/modif_salles_bat', {templateUrl: 'partials/modif_salles_bat.html'})
  	.when('/:idEtabl/:idBat/modif_annees_bat', {templateUrl: 'partials/modif_annees_bat.html'})
+ 	.when('/:idEtabl/:idBat/modif_site_bat', {templateUrl: 'partials/modif_site_bat.html'})
  	.otherwise({redirectTo: '/'});
  }]);

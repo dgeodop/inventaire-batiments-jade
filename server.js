@@ -27,6 +27,7 @@ app.get('/api/bat/:idEtabl/:idBat', ctrlBat.getOne);
 app.post('/api/bat/:idEtabl/:idBat/nom', ctrlPostBat.editNom);
 app.post('/api/bat/:idEtabl/:idBat/anconstr', ctrlPostBat.editAnConstr);
 app.post('/api/bat/:idEtabl/:idBat/anrenov', ctrlPostBat.editAnRenov);
+app.post('/api/bat/:idEtabl/:idBat/site', ctrlPostBat.editSite);
 
 app.get('/api/sal/:idEtabl/:idBat', ctrlSal.getAllOfBat);
 app.get('/api/sal/:idEtabl/:idBat/notinbat', ctrlSal.getAllNotInBat);

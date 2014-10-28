@@ -99,3 +99,25 @@ exports.editAnRenov = function(req, res) {
 		});
 	});
 }
+
+exports.editSite = function(req, res) {
+	var idBat = req.params.idBat;
+	var idEtabl = req.params.idEtabl;
+	var site = req.body.nouveauSite;
+	var queryEditSite = 'UPDATE bat SET site=$1 WHERE id_bat=$2';
+	var queryAddEvent = 'INSERT INTO event (typ_event, nom_bat, id_etabl, date, vu) VALUES ($1, $2, $3, now(), 0)';
+	pg.connect(connectString, function(err, client, done) {
+		if(err) { return console.error('erreur de connection au serveur', err); }
+		client.query(queryEditSite, [site, idBat], function(err, result) {
+			done();
+			if(err) { return console.error('postbat.editSite.queryEditNom', err); }
+			pg.connect(connectString, function(err, client, done) {
+				client.query(queryAddEvent, ['modif_site', idBat, idEtabl], function(err, result) {
+					done();
+					if(err) { return console.error('postbat.editNom.queryAddEvent', err); }
+					res.redirect('/api/bat/'+idEtabl+'/'+idBat);
+				});
+			});
+		});
+	});
+}
