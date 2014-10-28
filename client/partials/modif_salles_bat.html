@@ -1,53 +1,49 @@
-<div class="row">
-	<div class="col-md-12">
-		<div ng-controller="ctrlBat as edit">
-			<br>
-			<br>
-			<h2>{{bat.nom_bat}}</h2>
-			<p>Modifier les salles de ce bâtiment</p>
-		</div>
-		<div ng-controller="ctrlSal as app">
-			<h3>Salles</h3>
-			<table class="table">
-				<tr class="active">
-					<td>TYPE</td>
-					<td>QUANTITÉ</td>
-					<td>MODIFIER NB.</td>
-					<td>SUPPRIMER</td>
-				</tr>
-				<tr ng-repeat="sal in sals">
-					<td>{{sal.typ_sal_nom}}</td>
-					<td>{{sal.qte}}</td>
-					<td>
-						<form class="form-inline">
-							<input class="form-control" style="width: 60px" type="number" ng-model="sal.nouvQte">
-							<input type="hidden" ng-model="sal.id_sal">
-							<button class="form-control" ng-click="app.editQteSal(sal)">
-								<span class="glyphicon glyphicon-pencil"></span>
-							</button>
-						</form>
-					</td>
-					<td>
-						<button ng-click="app.delSal(sal)" class="btn">
-							<span class="glyphicon glyphicon-remove"></span>
-						</button>
-					</td>
-				</tr>
-			</table>
-			<div ng-controller="ctrlSalNotInBat as app">
+<div class="col-md-12">
+	<div ng-controller="ctrlBat as edit">
+		<h2>{{bat.nom_bat}}</h2>
+	</div>
+		<div ng-controller="ctrlSalNotInBat as app">
 			<h3>Ajouter un type de salle</h3>
-				<form class="form-inline">
-					<select class="form-control" ng-model="typsal.newTypSal">
-						<option ng-repeat="typsal in typsals" value="{{typsal.id_typ}}">
-							{{typsal.typ_sal_nom}}
-						</option>
-					</select>
-					<input type="number" class="form-control" ng-model="typsal.qte">
-					<button class="form-control" ng-click="app.addTypSal(typsal)">
-						<span class="glyphicon glyphicon-pencil"></span>
-					</button>
-				</form>			
-			</div>
+			<form class="form-inline">
+				<select class="form-control" ng-model="typsal.newTypSal">
+					<option ng-repeat="typsal in typsals" value="{{typsal.id_typ}}">
+						{{typsal.typ_sal_nom}}
+					</option>
+				</select>
+				<input type="number" class="form-control" ng-model="typsal.qte">
+				<button class="btn btn-success" ng-click="app.addTypSal(typsal)">
+					<span class="glyphicon glyphicon-pencil"></span>
+				</button>
+			</form>			
 		</div>
+		<br>
+	<div ng-controller="ctrlSal as app">
+		<h3>Modifier les salles de ce bâtiment</h3>
+		<table class="table">
+			<tr class="active">
+				<td>TYPE</td>
+				<td>QUANTITÉ</td>
+				<td>MODIFIER NB.</td>
+				<td>SUPPRIMER</td>
+			</tr>
+			<tr ng-repeat="sal in sals">
+				<td>{{sal.typ_sal_nom}}</td>
+				<td>{{sal.qte}}</td>
+				<td>
+					<form class="form-inline">
+						<input class="form-control" style="width: 60px" type="number" ng-model="sal.nouvQte">
+						<input type="hidden" ng-model="sal.id_sal">
+						<button class="btn btn-primary" ng-click="app.editQteSal(sal)">
+							<span class="glyphicon glyphicon-pencil"></span>
+						</button>
+					</form>
+				</td>
+				<td>
+					<button ng-click="app.delSal(sal)" class="btn btn-danger">
+						<span class="glyphicon glyphicon-remove"></span>
+					</button>
+				</td>
+			</tr>
+		</table>
 	</div>
 </div>

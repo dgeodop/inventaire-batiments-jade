@@ -1,41 +1,36 @@
-<div class="row">
-	<div class="col-md-12">
-		<div ng-controller="ctrlBat as edit">
-			<br>
-			<br>
-			<h2>{{bat.nom_bat}}</h2>
-			<p>Modifier l'année de construction ou de la dernière rénovation</p>
-			<table class="table">
-				<tr>
-					<td class="active">CONSTRUCTION</td>
-					<td>{{bat.annee_constr}}</td>
-					<td>
-						<form class="form-inline">
-							<input class="form-control" type="number" ng-model="edit.bat.nouvAnConstr">
-							<button class="form-control" ng-click="edit.editAnConstr(edit.bat)">
-								<span class="glyphicon glyphicon-pencil"></span>
-							</button>
-						</form>
-					</td>
-				</tr>
-				<tr>
-					<td class="active">RENOVATION</td>
-					<td>{{bat.annee_renov}}</td>
-					<td>
-						<form class="form-inline">
-							<input class="form-control" type="number" ng-model="edit.bat.nouvAnRenov">
-							<button class="form-control" ng-click="edit.editAnRenov(edit.bat)">
-								<span class="glyphicon glyphicon-pencil"></span>
-							</button>
-						</form>
-					</td>
-				</tr>
-			</table>
-			<br>
-			<br>
-			<a href="/#/{{idEtabl}}/{{bat.id_bat}}">
-				<button class="btn">Retour à la page du bâtiment</button>
-			</a>
-		</div>
+<div class="col-md-6">
+	<div ng-controller="ctrlBat as edit">
+		<h2>{{bat.nom_bat}}</h2>
+		<h3>Modifier l'année de ...</h3>
+		<table class="table">
+			<tr>
+				<td class="active">CONSTRUCTION</td>
+				<td>{{bat.annee_constr}}</td>
+				<td>
+					<form class="form-inline">
+						<input class="form-control" type="number" ng-model="edit.bat.nouvAnConstr">
+						<button class="btn btn-success" ng-click="edit.editAnConstr(edit.bat)">
+							<span class="glyphicon glyphicon-pencil"></span>
+						</button>
+					</form>
+				</td>
+			</tr>
+			<tr>
+				<td class="active">RENOVATION</td>
+				<td>{{bat.annee_renov}}</td>
+				<td>
+					<form class="form-inline">
+						<input class="form-control" type="number" ng-model="edit.bat.nouvAnRenov">
+						<button class="btn btn-success" ng-click="edit.editAnRenov(edit.bat)">
+							<span class="glyphicon glyphicon-pencil"></span>
+						</button>
+					</form>
+				</td>
+			</tr>
+		</table>
+		<br><br>
+		<a href="/#/{{idEtabl}}/{{bat.id_bat}}">
+			<button class="btn btn-primary">Retour à la page du bâtiment</button>
+		</a>
 	</div>
 </div>

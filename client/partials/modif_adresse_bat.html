@@ -1,22 +1,18 @@
-<div class="row">
-	<div class="col-md-12">
-		<div ng-controller="ctrlBat">
-			<br>
-			<br>
-			<h2>{{bat.nom_bat}}</h2>
-			<p>Choisir la localité</p>
-		</div>
-		<div ng-controller="ctrlLoc as app">
-			<form class="form-inline">
-				<select class="form-control" ng-model="app.lo.idLoc">
-					<option  ng-repeat="loc in locs" value="{{loc.id_loc}}">
-						{{loc.npa}} - {{loc.loc}}
-					</option>
-				</select>
-				<button class="form-control" ng-click="app.choixLoc(app.lo)">
-					<span class="glyphicon glyphicon-pencil"></span>
-				</button>
-			</form>
-		</div>
+<div class="col-md-12">
+	<div ng-controller="ctrlBat">
+		<h2>{{bat.nom_bat}}</h2>
+		<h3>Choisir la localité</h3>
+	</div>
+	<div ng-controller="ctrlLoc as app">
+		<form class="form-inline">
+			<select class="form-control" ng-model="app.lo.idLoc">
+				<option  ng-repeat="loc in locs" value="{{loc.id_loc}}">						{{loc.npa}} - {{loc.loc}}
+				</option>
+			</select>
+			<button class="btn btn-primary" ng-click="app.choixLoc(app.lo)">
+				<span class="glyphicon glyphicon-pencil"></span>
+			</button>
+		</form>
 	</div>
 </div>
+

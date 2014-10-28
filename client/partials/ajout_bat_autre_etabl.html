@@ -1,15 +1,14 @@
-<div class="row">
-	<div ng-controller="ctrlLocBatAutreEtabl as app">
-		<p>Choisir la localité dans laquelle se trouve le bâtiment</p>
-		<form class="form-inline">
-			<select class="form-control" ng-model="app.lo.nomLoc">
-				<option  ng-repeat="loc in locs" value="{{loc.localite}}">
-					{{loc.localite}}
-				</option>
-			</select>
-			<button class="form-control" ng-click="app.choixLocBatAutreEtabl(app.lo)">					<span class="glyphicon glyphicon-pencil"></span>
-			</button>
-		</form>
-	</div>
+<div ng-controller="ctrlLocBatAutreEtabl as app">
+	<h3>Choisir la localité dans laquelle se trouve le bâtiment</h3>
+	<br>
+	<form class="form-inline">
+		<select class="form-control" ng-model="app.lo.nomLoc">
+			<option  ng-repeat="loc in locs" value="{{loc.localite}}">
+				{{loc.localite}}
+			</option>
+		</select>
+		<button class="btn btn-primary" ng-click="app.choixLocBatAutreEtabl(app.lo)">					<span class="glyphicon glyphicon-pencil"></span>
+		</button>
+	</form>
 </div>
 

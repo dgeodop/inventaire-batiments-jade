@@ -1,19 +1,19 @@
-<div class="row">
-	<div class="col-md-6" ng-controller="ctrlAncienBatEtabl as edit">
-		<table class="table">
-			<tr>
-				<td>NOM</td>
-				<td>RÉUTILISER</td>
-			</tr>
-			<tr ng-repeat="bat in bats">
-				<td>{{bat.nom_bat}}</td>
-				<td>
-					<button class="btn" ng-click="edit.addBat(bat)">
-						<span class="glyphicon glyphicon-plus">
-						</span>
-					</button>
-				</td>
-			</tr>
-		</table>
-	</div>
+<div class="col-md-6" ng-controller="ctrlAncienBatEtabl as edit">
+	<h3>Réutiliser un ancien bâtiment</h3>
+	<br>
+	<table class="table">
+		<tr class="active">
+			<td>NOM</td>
+			<td>RÉUTILISER</td>
+		</tr>
+		<tr ng-repeat="bat in bats">
+			<td>{{bat.nom_bat}}</td>
+			<td>
+				<button class="btn btn-success" ng-click="edit.addBat(bat)">
+					<span class="glyphicon glyphicon-plus">
+					</span>
+				</button>
+			</td>
+		</tr>
+	</table>
 </div>

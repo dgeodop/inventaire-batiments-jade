@@ -5,20 +5,13 @@
 	<link rel="stylesheet" href="css/style.css"/>
 </head>
 <body ng-app="app">
+<div id="header" class="navbar navbar-default">
+	<h1>Inventaire des bâtiments</h1>
+</div>
 <div class="container">
-	<div id="header">
-	</div>
-
 	<div class="row">
-		<div  id="content">
-			<div ng-view></div>
-		</div>
+		<div ng-view></div>
 	</div>
-
-	
-
-
-
 </div>
 <script src="js/angular.js"></script>
 <script src="js/angular-route.js"></script>

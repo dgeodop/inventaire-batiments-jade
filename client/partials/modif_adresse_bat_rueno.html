@@ -1,23 +1,19 @@
-<div class="row">
-	<div class="col-md-12">
-		<div ng-controller="ctrlBat">
-			<br>
-			<br>
-			<h2>{{bat.nom_bat}}</h2>
-			<p>Choisir le numéro de rue (ordre alphabétique)</p>
-		</div>
-		<div ng-controller="ctrlRueNo as app">
-			<form class="form-inline">
-				<select class="form-control" ng-model="app.no.idRueNo">
-					<option  ng-repeat="rueno in ruenos" value="{{rueno.id_rue_no}}">
-						{{rueno.rue_no}}
-					</option>
-				</select>
-				<button class="form-control" ng-click="app.choixRueNo(app.no)">
-					<span class="glyphicon glyphicon-pencil"></span>
-				</button>
-			</form>
-		</div>
+<div class="col-md-12">
+	<div ng-controller="ctrlBat">
+		<h2>{{bat.nom_bat}}</h2>
+		<h3>Choisir le numéro de rue (ordre alphabétique)</h3>
+	</div>
+	<div ng-controller="ctrlRueNo as app">
+		<form class="form-inline">
+			<select class="form-control" ng-model="app.no.idRueNo">
+				<option  ng-repeat="rueno in ruenos" value="{{rueno.id_rue_no}}">
+					{{rueno.rue_no}}
+				</option>
+			</select>
+			<button class="btn btn-primary" ng-click="app.choixRueNo(app.no)">
+				<span class="glyphicon glyphicon-pencil"></span>
+			</button>
+		</form>
 	</div>
 </div>
 

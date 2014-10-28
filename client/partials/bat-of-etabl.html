@@ -1,5 +1,6 @@
 <div ng-controller="ctrlBatEtabl">
-	<div class="col-md-4">
+	<div class="col-md-4 listbat">
+		<h3>Liste des bâtiments</h3>
 		<div ng-repeat="bat in bats">
 			<a href="#/{{idEtabl}}/{{bat.id_bat}}">
 				<p>{{bat.nom_bat}}</p>
@@ -7,16 +8,20 @@
 		</div>
 	</div>
 	<div class="col-md-8">
+		<h3>Ajouter ou supprimer un bâtiment</h3>
+		<br>
 		<a href="#/{{idEtabl}}/suppr_bat">
-			<button class="btn">
-				Supprimer un bâtiment
+			<button class="btn btn-danger">
+				<span class="glyphicon glyphicon-remove"></span>
 			</button>
+			 Supprimer
 		</a>
 		<br><br>
 		<a href="#/{{idEtabl}}/ajout_bat">
-			<button class="btn">
-				Ajouter un bâtiment
+			<button class="btn btn-success">
+				<span class="glyphicon glyphicon-plus"></span>
 			</button>
+			 Ajouter
 		</a>
 	</div>
 </div>

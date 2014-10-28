@@ -1,14 +1,24 @@
 <div ng-controller="ctrlBatEtabl as edit">
-	<div class="col-md-6">
+	<div class="col-md-4 listbat">
+		<h3>Liste des bâtiments</h3>
+		<div ng-repeat="bat in bats">
+			<a href="#/{{idEtabl}}/{{bat.id_bat}}">
+				<p>{{bat.nom_bat}}</p>
+			</a>
+		</div>
+	</div>
+	<div class="col-md-8">
+		<h3>Supprimer un bâtiment</h3>
+		<br>
 		<table class="table">
-			<tr>
+			<tr class="active">
 				<td>NOM</td>
 				<td>SUPPRIMER</td>
 			</tr>
 			<tr ng-repeat="bat in bats">
 				<td>{{bat.nom_bat}}</td>
 				<td>
-					<button class="btn" ng-click="edit.delBat(bat)">
+					<button class="btn btn-danger" ng-click="edit.delBat(bat)">
 						<span class="glyphicon glyphicon-remove">
 						</span>
 					</button>
