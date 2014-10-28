@@ -73,6 +73,54 @@ exports.addAutreEtablBat = function(req, res) {
 	});
 }
 
+exports.addNewBat = function(req, res) {
+	var idEtabl = req.params.idEtabl;
+	var nomBat = req.body.nomBat;
+	var queryGetIdBat = 'SELECT max(id_bat) + 1 AS id_bat FROM bat';
+	var queryAddToBat = 'INSERT INTO bat (id_bat, nom_bat) VALUES ($1, $2);'
+	var queryGetIdBatDgeo = 'SELECT max(id_bat_dgeo) + 1 AS id_bat_dgeo FROM bat_dgeo WHERE id_etabl=$1';
+	var queryAddToBatDgeo = 'INSERT INTO bat_dgeo (id_bat, id_bat_dgeo, id_etabl, util) VALUES ($1,$2,$3, 1)';
+	var queryAddEvent = 'INSERT INTO event (typ_event, id_bat, id_etabl, date, vu) VALUES ($1, $2, $3, now(), 0)';
+	pg.connect(connectString, function(err, client, done) {
+		if(err) { return console.error('erreur de connection au serveur', err); }
+		client.query(queryGetIdBat, null, function(err, result) {
+			done();
+			if(err) { return console.error('postbat.addAutreEtablBat.queryGetIdBat', err); }
+			var idBat = result.rows[0].id_bat;
+			var resultIdBat = result.rows[0]; 
+			pg.connect(connectString, function(err, client, done) {
+				if(err) { return console.error('erreur de connection au serveur', err); }
+				client.query(queryAddToBat, [idBat, nomBat], function(err, result) {
+					done();
+					if(err) { return console.error('postbat.addAutreEtablBat.queryAddToBat', err); }
+					pg.connect(connectString, function(err, client, done) {
+						if(err) { return console.error('erreur de connection au serveur', err); }
+						client.query(queryGetIdBatDgeo, [idEtabl], function(err, result) {
+							done();
+							if(err) { return console.error('postbat.addAutreEtablBat.queryGetIdBatDgeo', err); }
+							var idBatDgeo = result.rows[0].id_bat_dgeo;
+							pg.connect(connectString, function(err, client, done) {
+								client.query(queryAddToBatDgeo, [idBat, idBatDgeo, idEtabl], function(err, result) {
+									done();
+									if(err) { return console.error('postbat.addAutreEtablBat.queryAddToBatDgeo', err); }
+									pg.connect(connectString, function(err, client, done) {
+										client.query(queryAddEvent, ['ajout_nouveau_bat', idBat, idEtabl], function(err, result) {
+											done();
+											if(err) { return console.error('postbat.addAutreEtablBat.queryAddEvent', err); }
+											res.send(resultIdBat);
+										});
+									});
+								});
+							});
+						});
+					});
+				});
+			});
+		});
+	});
+}
+
+
 exports.editNom = function(req, res) {
 	var idBat = req.params.idBat;
 	var idEtabl = req.params.idEtabl;

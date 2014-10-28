@@ -1,5 +1,6 @@
 <div class="row">
 	<div ng-controller="ctrlLocBatAutreEtabl as app">
+		<p>Choisir la localité dans laquelle se trouve le bâtiment</p>
 		<form class="form-inline">
 			<select class="form-control" ng-model="app.lo.nomLoc">
 				<option  ng-repeat="loc in locs" value="{{loc.localite}}">

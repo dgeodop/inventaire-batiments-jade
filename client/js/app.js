@@ -48,7 +48,7 @@ app.controller("ctrlAncienBatEtabl", function($scope,$http,$routeParams) {
 		var idBat = bat.id_bat;
 		$http.post("api/bat/" + idEtabl + "/" + idBat + "/add/ancien")
 			.success(function(data) {
-				window.location = "#/" + idEtabl;
+				window.location = "#/" + idEtabl + "/" + idBat;
 			})
 	}
 });
@@ -160,6 +160,19 @@ app.controller("ctrlBatInLoc", function($scope,$http,$routeParams){
 			.success(function() {
 				window.location = "#/" + idEtabl + "/" + idBat;
 			});
+	}
+});
+
+app.controller("ctrlNouveauBat", function($scope,$http,$routeParams){
+	var idEtabl = $routeParams.idEtabl;
+	$scope.idEtabl = idEtabl;
+	var app = this;
+	app.choixNomBat = function(bat) {
+		$http.post("api/bat/" + idEtabl + "/add/nouveau", bat)
+			.success(function(data) {
+				var idBat = data.id_bat;
+				window.location = "#/" + idEtabl + "/" + idBat + "/modif_adresse_bat";
+			})
 	}
 });
 

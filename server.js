@@ -29,6 +29,7 @@ app.get('/api/batinloc/:idEtabl/:nomLoc', ctrlBat.getAllBatInLoc);
 
 app.post('/api/bat/:idEtabl/:idBat/add/ancien', ctrlPostBat.addAncienBat);
 app.post('/api/bat/:idEtabl/:idBat/add/autretabl', ctrlPostBat.addAutreEtablBat);
+app.post('/api/bat/:idEtabl/add/nouveau', ctrlPostBat.addNewBat);
 app.post('/api/bat/:idEtabl/:idBat/del', ctrlPostBat.delBat);
 app.post('/api/bat/:idEtabl/:idBat/nom', ctrlPostBat.editNom);
 app.post('/api/bat/:idEtabl/:idBat/anconstr', ctrlPostBat.editAnConstr);
