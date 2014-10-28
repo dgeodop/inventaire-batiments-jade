@@ -24,6 +24,7 @@ app.get('/api/etabl', ctrlEtabl.getAllEtabl);
 app.get('/api/bat/:idEtabl', ctrlBat.getAllBatOfEtabl);
 app.get('/api/bat/:idEtabl/:idBat', ctrlBat.getOne);
 
+app.post('/api/bat/:idEtabl/:idBat/del', ctrlPostBat.delBat);
 app.post('/api/bat/:idEtabl/:idBat/nom', ctrlPostBat.editNom);
 app.post('/api/bat/:idEtabl/:idBat/anconstr', ctrlPostBat.editAnConstr);
 app.post('/api/bat/:idEtabl/:idBat/anrenov', ctrlPostBat.editAnRenov);

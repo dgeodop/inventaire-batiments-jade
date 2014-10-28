@@ -5,6 +5,7 @@ routes.config(['$routeProvider',
  $routeProvider
  	.when('/', {templateUrl: 'partials/etabl.html'})
  	.when('/:idEtabl', {templateUrl: 'partials/bat-of-etabl.html'})
+ 	.when('/:idEtabl/suppr_bat', {templateUrl: 'partials/suppr_bat.html'})
  	.when('/:idEtabl/:idBat', {templateUrl: 'partials/bat.html'})
  	.when('/:idEtabl/:idBat/modif_nom_bat', {templateUrl: 'partials/modif_nom_bat.html'})
  	.when('/:idEtabl/:idBat/modif_adresse_bat', {templateUrl: 'partials/modif_adresse_bat.html'})

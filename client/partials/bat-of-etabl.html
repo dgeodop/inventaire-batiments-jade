@@ -1,7 +1,22 @@
 <div ng-controller="ctrlBatEtabl">
-	<div ng-repeat="bat in bats">
-		<a href="#/{{idEtabl}}/{{bat.id_bat}}">
-			<p>{{bat.nom_bat}}</p>
+	<div class="col-md-4">
+		<div ng-repeat="bat in bats">
+			<a href="#/{{idEtabl}}/{{bat.id_bat}}">
+				<p>{{bat.nom_bat}}</p>
+			</a>
+		</div>
+	</div>
+	<div class="col-md-8">
+		<a href="#/{{idEtabl}}/suppr_bat">
+			<button class="btn">
+				Supprimer un bâtiment
+			</button>
+		</a>
+		<br><br>
+		<a href="">
+			<button class="btn">
+				Ajouter un bâtiment
+			</button>
 		</a>
 	</div>
 </div>

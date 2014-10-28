@@ -2,6 +2,27 @@ var pg = require('pg');
 var bd = require('../credentials/bd');
 var connectString = 'tcp://' + bd.username + ':' + bd.password + '@localhost/postgres';
 
+exports.delBat = function(req, res) {
+	var idBat = req.params.idBat;
+	var idEtabl = req.params.idEtabl;
+	var queryDelBat = 'UPDATE bat_dgeo SET util=0 WHERE id_etabl=$1 AND id_bat=$2';
+	var queryAddEvent = 'INSERT INTO event (typ_event, id_bat, id_etabl, date, vu) VALUES ($1, $2, $3, now(), 0)';
+	pg.connect(connectString, function(err, client, done) {
+		if(err) { return console.error('erreur de connection au serveur', err); }
+		client.query(queryDelBat, [idEtabl, idBat], function(err, result) {
+			done();
+			if(err) { return console.error('postbat.delBat.queryDelBat', err); }
+			pg.connect(connectString, function(err, client, done) {
+				client.query(queryAddEvent, ['suppr_bat', idBat, idEtabl], function(err, result) {
+					done();
+					if(err) { return console.error('postbat.delBat.queryAddEvent', err); }
+					res.redirect('/api/bat/'+idEtabl);
+				});
+			});
+		});
+	});
+}
+
 exports.editNom = function(req, res) {
 	var idBat = req.params.idBat;
 	var idEtabl = req.params.idEtabl;

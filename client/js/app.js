@@ -20,6 +20,15 @@ app.controller("ctrlBatEtabl", function($scope,$http,$routeParams) {
 		.success(function(data) {
 			$scope.bats = data;
 		})
+	var edit = this;
+	edit.delBat = function(bat) {
+		var idBat = bat.id_bat;
+		$http.post("api/bat/" + idEtabl + "/" + idBat + "/del")
+			.success(function(data) {
+				$scope.bats = data;
+			})
+	}
+	
 });
 
 app.controller("ctrlBat", function($scope, $http, $routeParams) {
@@ -75,7 +84,6 @@ app.controller("ctrlSal", function($scope,$http,$routeParams){
 		}
 		app.delSal = function(sal) {
 			var idSal = sal.id_sal;
-			console.log(idSal);
 			$http.post("api/sal/" + idEtabl + "/" + idBat + "/" + idSal + "/del")
 				.success(function(data) {
 				$scope.sals= data;

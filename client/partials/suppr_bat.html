@@ -1,0 +1,21 @@
+<div ng-controller="ctrlBatEtabl as edit">
+	<div class="col-md-6">
+		<table class="table">
+			<tr>
+				<td>NOM</td>
+				<td>SUPPRIMER</td>
+			</tr>
+			<tr ng-repeat="bat in bats">
+				<td>{{bat.nom_bat}}</td>
+				<td>
+					<button class="btn" ng-click="edit.delBat(bat)">
+						<span class="glyphicon glyphicon-remove">
+						</span>
+					</button>
+				</td>
+			</tr>
+		</table>
+	</div>
+</div>
+
+

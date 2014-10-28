@@ -1,5 +1,5 @@
 <div class="row">
-	<div class="col-md-6">
+	<div class="col-md-4">
 		<div ng-controller="ctrlBatEtabl">
 			<div ng-repeat="bat in bats">
 				<a href="#/{{idEtabl}}/{{bat.id_bat}}">
@@ -8,7 +8,7 @@
 			</div>
 		</div>
 	</div>
-	<div class="col-md-6">
+	<div class="col-md-8">
 		<div ng-controller="ctrlBat">
 			<h2>{{bat.nom_bat}} <a href="#/{{idEtabl}}/{{bat.id_bat}}/modif_nom_bat"><span class="glyphicon glyphicon-pencil"></span></a></h2>
 			<h3>Adresse <a href="#/{{idEtabl}}/{{bat.id_bat}}/modif_adresse_bat"><span class="glyphicon glyphicon-pencil"></span></a></h3>
