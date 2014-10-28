@@ -9,6 +9,7 @@ routes.config(['$routeProvider',
  	.when('/:idEtabl/ajout_bat', {templateUrl: 'partials/ajout_bat.html'})
  	.when('/:idEtabl/ajout_bat/ancien', {templateUrl: 'partials/ajout_bat_ancien.html'})
  	.when('/:idEtabl/ajout_bat/autre_etabl', {templateUrl: 'partials/ajout_bat_autre_etabl.html'})
+ 	.when('/:idEtabl/ajout_bat/autre_etabl/:nomLoc', {templateUrl: 'partials/ajout_bat_autre_etabl_loc.html'})
  	.when('/:idEtabl/ajout_bat/nouveau', {templateUrl: 'partials/ajout_bat_nouveau.html'})
  	.when('/:idEtabl/:idBat', {templateUrl: 'partials/bat.html'})
  	.when('/:idEtabl/:idBat/modif_nom_bat', {templateUrl: 'partials/modif_nom_bat.html'})

@@ -130,6 +130,39 @@ app.controller("ctrlLoc", function($scope,$http,$routeParams){
 	}
 });
 
+app.controller("ctrlLocBatAutreEtabl", function($scope,$http,$routeParams){
+	var idEtabl = $routeParams.idEtabl;
+	$scope.idEtabl = idEtabl;
+	$http.get("api/locbat")
+	.success(function(data) {
+		$scope.locs= data;
+	})
+	var app = this;
+	app.choixLocBatAutreEtabl = function(lo) {
+		var nomLoc = app.lo.nomLoc;
+		window.location = "#/" + idEtabl + "/ajout_bat/autre_etabl/" + nomLoc;
+	}
+});
+
+app.controller("ctrlBatInLoc", function($scope,$http,$routeParams){
+	var nomLoc = $routeParams.nomLoc;
+	$scope.nomLoc = nomLoc;
+	var idEtabl = $routeParams.idEtabl;
+	$scope.idEtabl = idEtabl;
+	$http.get("api/batinloc/" + idEtabl + "/" + nomLoc)
+	.success(function(data) {
+		$scope.bats= data;
+	})
+	var app = this;
+	app.choixBatAutreEtabl = function(bat) {
+		var idBat = bat.id_bat;
+		$http.post("api/bat/" + idEtabl + "/" + idBat + "/add/autretabl")
+			.success(function() {
+				window.location = "#/" + idEtabl + "/" + idBat;
+			});
+	}
+});
+
 app.controller("ctrlRue", function($scope,$http,$routeParams){
 	var idEtabl = $routeParams.idEtabl;
 	var idBat = $routeParams.idBat;

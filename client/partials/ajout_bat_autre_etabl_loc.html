@@ -1,0 +1,16 @@
+<div class="row">
+	<div class="col-md-6" ng-controller="ctrlBatInLoc as app">
+		<table class="table">
+			<tr ng-repeat="bat in bats">
+				<td>
+					{{bat.nom_bat}}
+				</td>
+				<td>
+					<button class="btn" ng-click="app.choixBatAutreEtabl(bat)">
+						<span class="glyphicon glyphicon-plus"></span>
+					</button>
+				</td>
+			</tr>
+		</table>
+	</div>
+</div>

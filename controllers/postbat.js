@@ -44,6 +44,35 @@ exports.addAncienBat = function(req, res) {
 	});
 }
 
+exports.addAutreEtablBat = function(req, res) {
+	var idBat = req.params.idBat;
+	var idEtabl = req.params.idEtabl;
+	var queryGetIdBatDgeo = 'SELECT max(id_bat_dgeo) + 1 AS id_bat_dgeo FROM bat_dgeo WHERE id_etabl=$1';
+	var queryAddToBatDgeo = 'INSERT INTO bat_dgeo (id_bat, id_bat_dgeo, id_etabl, util) VALUES ($1,$2,$3, 1)';
+	var queryAddEvent = 'INSERT INTO event (typ_event, id_bat, id_etabl, date, vu) VALUES ($1, $2, $3, now(), 0)';
+	pg.connect(connectString, function(err, client, done) {
+		if(err) { return console.error('erreur de connection au serveur', err); }
+		client.query(queryGetIdBatDgeo, [idEtabl], function(err, result) {
+			done();
+			if(err) { return console.error('postbat.addAutreEtablBat.queryGetIdBatDgeo', err); }
+			var idBatDgeo = result.rows[0].id_bat_dgeo;
+			pg.connect(connectString, function(err, client, done) {
+				client.query(queryAddToBatDgeo, [idBat, idBatDgeo, idEtabl], function(err, result) {
+					done();
+					if(err) { return console.error('postbat.addAutreEtablBat.queryAddToBatDgeo', err); }
+					pg.connect(connectString, function(err, client, done) {
+						client.query(queryAddEvent, ['ajout_bat_autre_etabl', idBat, idEtabl], function(err, result) {
+							done();
+							if(err) { return console.error('postbat.addAutreEtablBat.queryAddEvent', err); }
+							res.send('ok').status(200);
+						});
+					});
+				});
+			});
+		});
+	});
+}
+
 exports.editNom = function(req, res) {
 	var idBat = req.params.idBat;
 	var idEtabl = req.params.idEtabl;

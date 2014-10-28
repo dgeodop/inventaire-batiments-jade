@@ -30,6 +30,35 @@ exports.getAllAncienBatOfEtabl = function (req, res) {
 	});
 }
 
+exports.getAllLocWhereBat = function (req, res) {
+	var idEtabl = req.params.idEtabl
+	var queryList = 'SELECT DISTINCT localite FROM bat WHERE id_bat NOT IN (SELECT id_bat FROM bat_dgeo WHERE id_etabl=$1) ORDER BY localite';
+	pg.connect(connectString, function(err, client, done) {
+		if(err) { return console.error('erreur de connection au serveur', err); }
+		client.query(queryList, [idEtabl], function(err, result) {
+			done();
+			if(err) { return console.error('bat.getAllLocWhereBat', err); }
+			var results = JSON.stringify(result.rows);
+			res.send(results);
+		});
+	});
+}
+
+exports.getAllBatInLoc = function (req, res) {
+	var nomLoc = req.params.nomLoc
+	var idEtabl = req.params.idEtabl
+	var queryList = 'SELECT * FROM bat WHERE localite=$1 AND id_bat NOT IN (SELECT id_bat FROM bat_dgeo WHERE id_etabl=$2) ORDER BY nom_bat';
+	pg.connect(connectString, function(err, client, done) {
+		if(err) { return console.error('erreur de connection au serveur', err); }
+		client.query(queryList, [nomLoc, idEtabl], function(err, result) {
+			done();
+			if(err) { return console.error('bat.getAllBatInLoc', err); }
+			var results = JSON.stringify(result.rows);
+			res.send(results);
+		});
+	});
+}
+
 exports.getOne = function (req, res) {
 	var idBat = req.params.idBat;
 	var queryList = 'SELECT  * FROM bat WHERE id_bat=$1';
